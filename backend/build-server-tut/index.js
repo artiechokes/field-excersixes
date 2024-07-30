@@ -4,6 +4,14 @@ const app = express();
 const port = 3000;
 app.use(morgan("dev"));
 
+app.use((req, res, next) => {
+  console.log(`Request Method: ${req.method}`);
+  console.log(`Request URL: ${req.url}`);
+  console.log(`Request Date: ${new Date()}`);
+
+  next();
+});
+
 app.get("/", (req, res) => {
   res.send("<h1>Home Page</h1>");
 });
